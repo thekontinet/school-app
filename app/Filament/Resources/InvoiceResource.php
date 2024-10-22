@@ -28,7 +28,9 @@ class InvoiceResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\DatePicker::make('due_date')
+                    ->required()
+                    ->minDate(now()->startOfDay())
             ]);
     }
 

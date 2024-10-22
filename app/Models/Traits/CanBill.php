@@ -26,17 +26,17 @@ trait CanBill
 
     public function createInvoice(): Collection
     {
-        $this->load(['student', 'course']);
+        $this->load(['plan']);
 
         $data = [];
-        $dueDate = now(); // Set the first installment's due date to today
+        $dueDate = now()->endOfDay(); // Set the first installment's due date to today
         $installmentAmount = $this->plan->total_amount / $this->plan->installment_count;
         $incrementDuration = $this->course->duration_in_weeks / $this->plan->installment_count;
 
         for ($i = 1; $i <= $this->plan->installment_count; $i++) {
             $data[] = [
                 'amount' => $installmentAmount,
-                'due_date' => $i === 1 ? $dueDate : (clone $dueDate)->addWeeks($incrementDuration * ($i - 1))->endOfDay(),
+                'due_date' => $i === 1 ? $dueDate : (clone $dueDate)->addWeeks(min($incrementDuration, 4) * ($i - 1))->startOfDay(),
                 'status' => InvoiceStatus::PENDING,
             ];
         }
