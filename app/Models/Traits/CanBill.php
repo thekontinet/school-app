@@ -35,6 +35,7 @@ trait CanBill
 
         for ($i = 1; $i <= $this->plan->installment_count; $i++) {
             $data[] = [
+                'student_id' => $this->student->id,
                 'amount' => $installmentAmount,
                 'due_date' => $i === 1 ? $dueDate : (clone $dueDate)->addWeeks(min($incrementDuration, 4) * ($i - 1))->startOfDay(),
                 'status' => InvoiceStatus::PENDING,

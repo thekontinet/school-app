@@ -38,6 +38,7 @@ class InvoiceResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('student.fullname'),
                 Tables\Columns\TextColumn::make('number')
                     ->url(fn($record) => self::getUrl('show', compact('record'))),
                 Tables\Columns\TextColumn::make('amount')->money('NGN')
@@ -51,7 +52,8 @@ class InvoiceResource extends Resource
                 Tables\Columns\TextColumn::make('status'),
             ])
             ->filters([
-                //
+//                Tables\Filters\SelectFilter::make('student')
+//                    ->relationship('student')
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([

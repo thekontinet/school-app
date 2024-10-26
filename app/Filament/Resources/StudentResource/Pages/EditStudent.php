@@ -10,6 +10,11 @@ class EditStudent extends EditRecord
 {
     protected static string $resource = StudentResource::class;
 
+    public function hasCombinedRelationManagerTabsWithContent(): bool
+    {
+        return true;
+    }
+
     protected function getHeaderActions(): array
     {
         return [

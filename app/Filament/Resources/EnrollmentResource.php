@@ -75,6 +75,9 @@ class EnrollmentResource extends Resource
             ->filters([
                 //
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make()
+            ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\Action::make('view')

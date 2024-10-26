@@ -40,7 +40,7 @@ class Student extends Model
 
     public function invoices()
     {
-        return $this->morphMany(Invoice::class, 'owner');
+        return $this->hasManyThrough(Invoice::class, Enrollment::class);
     }
 
     public static function booted()

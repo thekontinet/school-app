@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\EnrollmentResource\RelationManagers\InvoiceRelationManager;
 use App\Filament\Resources\StudentResource\Pages;
 use App\Filament\Resources\StudentResource\RelationManagers\EnrollmentsRelationManager;
 use App\Models\Student;
@@ -147,6 +148,7 @@ class StudentResource extends Resource
     {
         return [
             EnrollmentsRelationManager::class,
+            InvoiceRelationManager::class
         ];
     }
 

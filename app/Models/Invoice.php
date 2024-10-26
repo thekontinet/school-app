@@ -78,4 +78,14 @@ class Invoice extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function enrollment()
+    {
+        return $this->belongsTo(Enrollment::class);
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

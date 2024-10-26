@@ -26,7 +26,8 @@ return new class extends Migration
 
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('enrollment_id')->constrained('enrollments')->onDelete('cascade');
+            $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
+            $table->foreignId('enrollment_id')->constrained('enrollments')->cascadeOnDelete();
             $table->string('number')->unique();
             $table->decimal('amount', 10, 2);
             $table->decimal('amount_due', 10, 2);
